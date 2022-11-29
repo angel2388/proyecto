@@ -9,23 +9,29 @@ export const MainPage = () => {
 
   return (
     <div className="text-center mt-5">
-      <h1 className="mb-4">Mejores juegos</h1>
-	  <h3>Género</h3>
+      <h1 className="mb-4">Juegos del momento</h1>
+	  <h3 className="mb-4">Género</h3>
       <div className="Container">
-        <div className="d-flex p-3">
-          <div class="col-4">
+        <div className="d-flex row flex-nowrap overflow-scroll img-fluid">
+          <div class="col-3">
             <Card
               title="Título"
               img="https://www.westsideplaza.co.uk/wp-content/uploads/2017/07/300x300.png"
             />
           </div>
-          <div class="col-4">
+          <div class="col-3">
             <Card
               title="Título"
               img="https://www.westsideplaza.co.uk/wp-content/uploads/2017/07/300x300.png"
             ></Card>
           </div>
-          <div class="col-4">
+          <div class="col-3">
+            <Card
+              title="Título"
+              img="https://www.westsideplaza.co.uk/wp-content/uploads/2017/07/300x300.png"
+            ></Card>
+          </div>
+          <div class="col-3">
             <Card
               title="Título"
               img="https://www.westsideplaza.co.uk/wp-content/uploads/2017/07/300x300.png"
