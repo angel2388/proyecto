@@ -22,8 +22,8 @@ export function Card(props) {
    }
    
    Card.PropTypes = {
-       img: PropTypes.string,
-	 title: PropTypes.string,
+    img: PropTypes.string,
+	title: PropTypes.string,
    };
 
 
