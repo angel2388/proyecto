@@ -11,13 +11,22 @@ from api.models import db
 from api.routes import api
 from api.admin import setup_admin
 from api.commands import setup_commands
+from flask_mail import Mail
+from flask_mail import Message
 
 #from models import Person
 
 ENV = os.getenv("FLASK_ENV")
 static_file_dir = os.path.join(os.path.dirname(os.path.realpath(__file__)), '../public/')
 app = Flask(__name__)
+app.config['MAIL_SERVER']='smtp.mailtrap.io'
+app.config['MAIL_PORT'] = 2525
+app.config['MAIL_USERNAME'] = '0bccf0a4670f35'
+app.config['MAIL_PASSWORD'] = '0fa1d1f894e10e'
+app.config['MAIL_USE_TLS'] = True
+app.config['MAIL_USE_SSL'] = False
 app.url_map.strict_slashes = False
+mail = Mail(app)
 
 # database condiguration
 db_url = os.getenv("DATABASE_URL")
@@ -63,6 +72,19 @@ def serve_any_other_file(path):
     response.cache_control.max_age = 0 # avoid cache memory
     return response
 
+@app.route ('/send_message', methods=['POST'])
+def send_message():
+    msg = Message ("Click aquí para activar",
+                    sender = "leticia@gmail.com",
+                    recipients = ["laura@gmail.com", "ines@gmail.com"])
+    
+    msg.html = "<h1>Click aquí para activar</h1>"
+    mail.send(msg)
+    return jsonify({"msg":"Correo enviado"})
+
+@app.route('/activation', methods=['GET'])
+def activation():
+    return jsonify({'msg': 'usuario activado'})
 
 # this only runs if `$ python src/main.py` is executed
 if __name__ == '__main__':

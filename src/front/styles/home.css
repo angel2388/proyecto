@@ -1,7 +1,16 @@
-/*
-    home.css: This website contains selectors only used in home.css
+.carousel img{
+    height: 800px;
+} 
 
-    All pages share the styles on index.css but you should create 
-    one more css for each page that will contain the selected used 
-    on that page only (the ones not reused in other pages).
-*/
+.texto-portada {
+    position: absolute;
+    top: 50%;
+    color: aliceblue;
+    margin-left: 35px;
+    text-align: center;
+}
+
+.texto-encima {
+    font-size: 28px;
+
+}
