@@ -12,11 +12,28 @@ from api.routes import api
 from api.admin import setup_admin
 from api.commands import setup_commands
 
+from flask_mail import Mail
+from flask_mail import Message
 #from models import Person
+
+from flask_jwt_extended import JWTManager
 
 ENV = os.getenv("FLASK_ENV")
 static_file_dir = os.path.join(os.path.dirname(os.path.realpath(__file__)), '../public/')
 app = Flask(__name__)
+app.config["JWT_SECRET_KEY"] = "super-secret"  # Change this!
+jwt = JWTManager(app)
+
+
+app.config['MAIL_SERVER']='smtp.mailtrap.io'
+app.config['MAIL_PORT'] = 2525
+app.config['MAIL_USERNAME'] = '329f2dc331d67e'
+app.config['MAIL_PASSWORD'] = '7120dacc187372'
+app.config['MAIL_USE_TLS'] = True
+app.config['MAIL_USE_SSL'] = False
+
+mail = Mail(app)
+
 app.url_map.strict_slashes = False
 
 # database condiguration
@@ -63,7 +80,19 @@ def serve_any_other_file(path):
     response.cache_control.max_age = 0 # avoid cache memory
     return response
 
+@app.route('/send_message', methods=['POST'])
+def send_message():
+    msg = Message("Hello",
+                sender="juan@test.com",
+                recipients=["pepe@test.com"])
+    
+    msg.html = '<a href="https://www.google.com/">Este es el cuerpo del mensaje</a>'
+    mail.send(msg)
+    return jsonify({"msg":"correo enviado"})
 
+@app.route('/activacion', methods=['GET'])
+def activacion():
+    return jsonify({"msg":"usuario activado"})
 # this only runs if `$ python src/main.py` is executed
 if __name__ == '__main__':
     PORT = int(os.environ.get('PORT', 3001))
