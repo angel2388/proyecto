@@ -1,0 +1,32 @@
+.btn{
+    background-color: rgb(125, 92, 241);
+    color: rgb(0, 0, 0);
+    border-color: rgb(125, 92, 241);
+
+}
+
+.mb-2{
+    color: rgb(125, 92, 241);
+    font-size: calc(2rem + .3vw);
+    
+}
+
+form{
+    padding: 10px;
+    border: solid 1px black;
+    background-color: black;
+    width: 100%;
+    
+}
+
+.background-col{
+    background-color: rgb(125, 92, 241);
+}
+
+.colorletra{
+    color: rgb(125, 92, 241);
+}
+
+.logoform{
+    object-fit: cover;
+}
