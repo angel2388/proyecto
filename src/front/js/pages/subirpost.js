@@ -3,7 +3,7 @@ import { Context } from "../store/appContext";
 import { Texto } from "./texto";
 import { Like } from "./like";
 import "../../styles/home.css";
-import { doc } from "prettier";
+
 import config from "./config";
 
 export const Subirpost = () => {
