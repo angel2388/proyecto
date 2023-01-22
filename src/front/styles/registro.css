@@ -1,0 +1,13 @@
+formreg {
+  background-color: rgb(125, 92, 241);
+  padding: 20px;
+}
+
+.btn-reg {
+  background-color: white;
+  color: black;
+}
+
+legend {
+  color: black;
+}
