@@ -1,47 +1,63 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext";
 import "../../styles/home.css";
-import Navbar from "../component/navbar";
-import Card from "../component/card";
+import { Link, matchPath } from "react-router-dom";
+import { fileURLToPath } from "url";
+import { Card } from "../component/card";
+import { Cardscroll } from "../component/cardscroll";
+import config from "./config";
 
 export const MainPage = () => {
   const { store, actions } = useContext(Context);
+  const [juegos, setJuegos] = useState([]);
+  const [generos, setGeneros] = useState([]);
+  useEffect(() => {
+    const calljuegos = async () => {
+      const res = await fetch(`${config.HOSTNAME}/api/posts`);
+      const data = await res.json();
+      setJuegos(data.data);
+      console.log(data.data);
+    };
+    calljuegos();
 
+    const callgeneros = async () => {
+      const res = await fetch(`${config.HOSTNAME}/api/get_genero`);
+      const data = await res.json();
+      setGeneros(data.data);
+    };
+    callgeneros();
+  }, []);
   return (
     <div className="text-center mt-5">
       <h1 className="mb-4">Juegos del momento</h1>
-	  <h3 className="mb-4">Género</h3>
-      <div className="Container">
-        <div className="d-flex row flex-nowrap overflow-scroll img-fluid">
-          <div class="col-3">
-            <Card
-              title="Título"
-              img="https://www.westsideplaza.co.uk/wp-content/uploads/2017/07/300x300.png"
-            />
-          </div>
-          <div class="col-3">
-            <Card
-              title="Título"
-              img="https://www.westsideplaza.co.uk/wp-content/uploads/2017/07/300x300.png"
-            ></Card>
-          </div>
-          <div class="col-3">
-            <Card
-              title="Título"
-              img="https://www.westsideplaza.co.uk/wp-content/uploads/2017/07/300x300.png"
-            ></Card>
-          </div>
-          <div class="col-3">
-            <Card
-              title="Título"
-              img="https://www.westsideplaza.co.uk/wp-content/uploads/2017/07/300x300.png"
-            ></Card>
-          </div>
-          </div>
+      <div className="container">
+        <div>
+          {generos.map((gender) => {
+            return (
+              <div>
+                <Cardscroll
+                  genero={gender.nombre}
+                  content={juegos.map((juego) => {
+                    if (juego.genero === gender.nombre) {
+                      return (
+                        <div className="col-3">
+                          <Card
+                            title={juego.nombre}
+                            url={juego.id}
+                            img={juego.imagen}
+                          ></Card>
+                        </div>
+                      );
+                    }
+                  })}
+                ></Cardscroll>
+              </div>
+            );
+          })}
         </div>
-		
       </div>
+    </div>
   );
 };
-
+/**/
 /* {store.message || "Loading message from the backend (make sure your python backend is running)..."} */

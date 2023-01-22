@@ -17,8 +17,13 @@ export const Login = () => {
 
     const data = await res.json();
     if (res.status == 200) {
+      console.log("hola");
       const token = data.data;
       localStorage.token = JSON.stringify({ token }); //asi almacenenamos como un objeto, podria almacenarse solo el token, pero con este proceso cambiamos de string a objeto y de objeto a strng
+    } else {
+      console.log("mal");
+      alert(data.msg);
+      return;
     }
   };
   return (

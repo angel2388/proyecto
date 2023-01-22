@@ -1,144 +1,128 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext";
-import { Util } from "./util";
-import rigoImageUrl from "../../img/rigo-baby.jpg";
-import AvatarDefault from "../../img/avatardefault.png";
 import "../../styles/home.css";
-import { doc } from "prettier";
+import Navbar from "../component/navbar";
+import { Card } from "../component/card";
+import { Hashtags } from "../component/hashtags";
+import Portada from "../../img/portada.png";
+import Portada2 from "../../img/portada2.png";
+import Portada3 from "../../img/portada3.jpg";
+import { Cardscroll } from "../component/cardscroll";
 import config from "./config";
 
 export const Home = () => {
   const { store, actions } = useContext(Context);
-  const [user, setUser] = useState();
-  const sendImage = async () => {
-    console.log(">>>sendImage");
-    const archivos = document.getElementById("file-input").files;
-    if (archivos.length == 0) {
-      alert(">> Falta imagen");
-      return;
-    }
-    console.log({ archivos });
-    const archivo = archivos[0];
-    const body = new FormData();
-    body.append("archivo", archivo);
+  //millan nuevo
+  const [juegos, setJuegos] = useState([]);
+  const [generos, setGeneros] = useState([]);
+  useEffect(() => {
+    const calljuegos = async () => {
+      const res = await fetch(`${config.HOSTNAME}/api/post`);
+      const data = await res.json();
+      setJuegos(data.data);
+      console.log(data.data);
+    };
+    calljuegos();
 
-    fetch(`${config.HOSTNAME}/api/upload`, {
-      method: "POST",
-      body,
-    })
-      .then((res) => {
-        return res.json();
-      })
-      .then((data) => {
-        console.log({ data });
-        loadImage(data.secure_url);
-      });
-    console.log();
-  };
-  const loadImage = (url) => {
-    const archivo = document.getElementById("file-input").files[0];
+    const callgeneros = async () => {
+      const res = await fetch(`${config.HOSTNAME}/api/get_genero`);
+      const data = await res.json();
+      setGeneros(data.data);
+    };
+    callgeneros();
+  }, []);
 
-    let urlImage = url; //onchange se llama a esta funcion y se aplica a la variable urlImage el url
-    if (!urlImage) {
-      //si cambia el estado de urlImage
-      const blob = new Blob([archivo], { type: archivo.type }); //hace un blob de la const archivo, con el tipo archivo
-      urlImage = URL.createObjectURL(blob);
-    }
+  document.body.style = "background: #2A2A2A;";
 
-    console.log({ urlImage });
-    const imageElement = document.getElementById("image");
-    imageElement.src = urlImage; //la url de la imagen se situa en el src para que salga en pantalla
-  };
-  const openWindowFile = () => {
-    //se abre los documentos del usuario al hacer click donde esté esta función,
-    document.getElementById("file-input").click(); //toma el elemento con ese id, y le hace "click"
-  };
-
-  const newVal = (e) => {
-    const emaildata = document.getElementById("pa").value;
-
-    let texto = e;
-    if (texto.length < 4) {
-      emaildata = "cebolla";
-    } else {
-      return texto;
-    }
-  };
-
-  const cebolla = () => {
-    return "cebolla";
-  };
-
-  const loadData = (data) => {
-    const emaildata = document.getElementById("data-input");
-  };
-
-  if (localStorage.userdata) {
-    const datalocal = JSON.parse(localStorage.getItem("userdata"));
-    setUser(datalocal);
-    console.log({ userdata });
-    console.log("Se esta cargando la informacion desde localStorage");
-  } else {
-    const res = /*await*/ fetch(`${config.HOSTNAME}/api/people`);
-    const data = /*await*/ res.json();
-
-    localStorage.setItem("userdata", JSON.stringify(data.results));
-    setUser(data.results);
-    console.log({ data });
-    console.log("Se esta realizando el fetch a la API");
-  }
-
-  /*useEffect(async () => {
-    fetch(`${config.HOSTNAME}/api/private`, {
-      method: "GET",
-      headers: {
-        Authorization: `Bearer ${tokenData.token}`,
-      },
-    })
-      .then((res) => {
-        console.log({ res });
-        return res.json();
-      })
-      .then((data) => {
-        console.log({ data });
-        setDisabled(false);
-      });
-  }, []);*/
   return (
-    <div className="text-center mt-5">
-      {/* <input hidden id="file-input" type="file" onChange={loadImage}></input> */}
-      <div className="row">
-        <input
-          hidden
-          id="file-input"
-          type="file"
-          onChange={() => loadImage()}
-        ></input>
-        <img
-          onClick={openWindowFile}
-          src={AvatarDefault}
-          id="image"
-          style={{ width: "200px", height: "200px" }}
-        ></img>
-        <button className="col-1 h-25 my-auto" onClick={sendImage}>
-          Submit
-        </button>
-        <input
-          className="col-2"
-          onChange={(e) => newVal(e.target.value)}
-          id="pa"
-        />
+    <div>
+      <div>
+        <div
+          id="carouselExampleInterval"
+          class="carousel slide"
+          data-mdb-ride="carousel"
+        >
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img src={Portada} class="d-block w-100" />
+              <div className="texto-portada col-md-4 bg-secondary bg-opacity-50 p-3">
+                <div class="texto-encima ">¡Bienvenido/a a My Games Site!</div>
+                <div class="texto-debajo">Tu red social de videojuegos.</div>
+              </div>
+            </div>
+            <div class="carousel-item" data-mdb-interval="2000">
+              <img src={Portada3} class="d-block w-100" />
+              <div className="texto-portada col-md-4 bg-secondary bg-opacity-50 p-3">
+                <div class="texto-encima ">¡Descubre nuevos videojuegos!</div>
+                <div class="texto-debajo">
+                  Escribe tus propias reseñas y descubre nuevos videojuegos
+                  mediante las reseñas del resto de usuarios.
+                </div>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <img src={Portada2} class="d-block w-100" />
+              <div className="texto-portada col-md-4 bg-secondary bg-opacity-50 p-3">
+                <div class="texto-encima ">
+                  ¡Conoce a personas con gustos similares!
+                </div>
+                <div class="texto-debajo">
+                  Podrás hacerlo través de nuestra sección de "conversaciones".
+                </div>
+              </div>
+            </div>
+          </div>
+          <button
+            class="carousel-control-prev"
+            data-mdb-target="#carouselExampleInterval"
+            type="button"
+            data-mdb-slide="prev"
+          >
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button
+            class="carousel-control-next"
+            data-mdb-target="#carouselExampleInterval"
+            type="button"
+            data-mdb-slide="next"
+          >
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
       </div>
-      <div className="alert alert-info">
-        {store.message ||
-          "Loading message from the backend (make sure your python backend is running)..."}
+
+      <div className="text-center mt-5">
+        <div>
+          <Hashtags></Hashtags>
+        </div>
+        <h1 className="mb-4 text-light">Juegos mejor valorados</h1>
+        <div className="Container">
+          <div>
+            {generos.map((gender) => {
+              return (
+                <div>
+                  <Cardscroll
+                    genero={gender.nombre}
+                    content={juegos.map((juego) => {
+                      if (juego.genero === gender.nombre) {
+                        return (
+                          <div className="col-3">
+                            <Card title={juego.nombre}></Card>
+                          </div>
+                        );
+                      }
+                    })}
+                  ></Cardscroll>
+                </div>
+              );
+            })}
+          </div>
+        </div>
       </div>
-      <p>
-        This boilerplate comes with lots of documentation:{" "}
-        <a href="https://start.4geeksacademy.com/starters/react-flask">
-          Read documentation
-        </a>
-      </p>
     </div>
   );
 };
+
+/* {store.message || "Loading message from the backend (make sure your python backend is running)..."} */

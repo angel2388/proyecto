@@ -98,7 +98,7 @@ def login():
     hash = user.password
     isValid = bcrypt.check_password_hash(hash, password)
     if not isValid:
-        return jsonify({"msg":"Clave incorrecta.","data":None})
+        return jsonify({"msg":"Clave incorrecta.","data":None}), 201
 
     token = create_access_token(identity={"rol": "usuario", "data": user.serialize()})
     return jsonify({"msg": None,"data":token})
@@ -240,15 +240,22 @@ def postup():
 @api.route('/comentario', methods=['POST'])
 def comentario():
     body = request.get_json()
-    valor = body.get('valor')
 
-    edad = Edad(
-        valor = valor,
+    texto = body.get('texto')
+    user_id = body.get('user_id')
+    post_id = body.get('post_id')
+    tema_id = body.get('tema_id')
+
+    comentario= Comentario(
+        texto = texto,
+        user_id = user_id,
+        post_id = post_id,
+        tema_id = tema_id,
     )
 
-    db.session.add(edad)
+    db.session.add(comentario)
     db.session.commit()
-    return jsonify({"msg":"edad añadida" ,"data":None})
+    return jsonify({"msg":"comentario añadido" ,"data":None}), 201
 
 @api.route('/like', methods=['POST'])
 def like():
@@ -275,3 +282,29 @@ def get_like(user_id):
         if like.user_id==user_id:
             result.append(like.serialize())
     return jsonify(result)
+
+@api.route('/posts', methods=['GET'])
+def get_posts():
+    posts = Post.query.all()
+    result=[]
+    for post in posts:
+        #genero = Genero.query.get(id)
+        result.append(post.serialize())
+    return jsonify({"msg":None ,"data":result})
+
+@api.route('/post/<id>', methods=['GET'])
+def get_post(id):
+    post = Post.query.get(id)
+    result=[]
+    result.append(post.serialize())
+    return jsonify({"msg":None ,"data":result})
+
+@api.route('/comentario/<int:user_id>', methods=['GET'])
+def get_comentario(user_id):
+    comentarios = Comentario.query.all()
+    result=[]
+    for comentario in comentarios:
+        if comentario.user_id==user_id:
+            result.append(comentario.serialize())
+    return jsonify({"msg":None ,"data":result})
+

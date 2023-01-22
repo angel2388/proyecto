@@ -71,6 +71,7 @@ class Post(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     genero_id = db.Column(db.Integer, db.ForeignKey('genero.id'))
     edad_id = db.Column(db.Integer, db.ForeignKey('edad.id'))
+    
     user = db.relationship(User)
     genero = db.relationship(Genero)
     edad = db.relationship(Edad)
@@ -79,6 +80,7 @@ class Post(db.Model):
         return f'<User {self.email}>'
 
     def serialize(self):
+
         return {
             "id": self.id,
             "nombre":self.nombre,
@@ -88,9 +90,12 @@ class Post(db.Model):
             "opinion":self.opinion,
             "creacion":self.creacion_fecha.isoformat(),
             "privado":self.privado,
-            "user_id":self.user_id,
-            "genero_id":self.genero_id,
-            "edad_id":self.edad_id,
+            #"user_id":self.user_id,
+            "user":self.user.nickname,
+            #"genero_id":self.genero_id,
+            "genero":self.genero.nombre,
+            #"edad_id":self.edad_id,
+            "edad":self.edad.valor,
             # do not serialize the password, its a security breach
         }
 
@@ -136,7 +141,7 @@ class Comentario(db.Model):
             "id": self.id,
             "texto":self.texto,
             "creacion":self.creacion_fecha.isoformat(),
-            "user_id":self.user_id,
+            "user":self.user.nickname,
             "post_id":self.post_id,
             "tema_id":self.tema_id,
             

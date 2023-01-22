@@ -1,3 +1,18 @@
+.carousel img {
+  height: 800px;
+}
+
+.texto-portada {
+  position: absolute;
+  top: 50%;
+  color: aliceblue;
+  margin-left: 35px;
+  text-align: center;
+}
+
+.texto-encima {
+  font-size: 28px;
+}
 /*
     home.css: This website contains selectors only used in home.css
 
