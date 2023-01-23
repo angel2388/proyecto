@@ -3,7 +3,7 @@ import { Context } from "../store/appContext";
 
 export const Hashtags = () => {
   return (
-    <div>
+    <div className="sticky-bottom">
       <div className="hashtag rounded-pill d-flex mb-3">
         <div className="circulo">
           <div className="mt-1">1</div>

@@ -79,7 +79,7 @@ export const Home = () => {
             data-mdb-slide="prev"
           >
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
+            <span class="visually-hidden">Anterior</span>
           </button>
           <button
             class="carousel-control-next"
@@ -88,18 +88,18 @@ export const Home = () => {
             data-mdb-slide="next"
           >
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
+            <span class="visually-hidden">Siguiente</span>
           </button>
         </div>
       </div>
 
-      <div className="text-center mt-5">
-        <div>
+      <div className="text-center mt-5 d-flex">
+        <div className="col-3">
           <Hashtags></Hashtags>
         </div>
+          <div className="col-9">
         <h1 className="mb-4 text-light">Juegos mejor valorados</h1>
         <div className="Container">
-          <div>
             {generos.map((gender) => {
               return (
                 <div>

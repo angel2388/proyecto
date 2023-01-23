@@ -4,9 +4,10 @@ import "../../styles/navbar.css";
 
 export const Navbar = () => {
   return (
+    
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark text-white">
       <div className="container-fluid">
-        <a className="navbar-brand ms-3" href="#">
+        <a className="navbar-brand ms-3" href="Home">
           MY GAMES SITE
         </a>
         <button
@@ -25,11 +26,11 @@ export const Navbar = () => {
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item me-3">
                 <a className="nav-link active" aria-current="page" href="Home">
-                  Géneros
+                  Inicio
                 </a>
               </li>
               <li className="nav-item me-3">
-                <a className="nav-link active" href="#">
+                <a className="nav-link active" href="Forogeneral">
                   Conversaciones
                 </a>
               </li>
@@ -51,7 +52,7 @@ export const Navbar = () => {
                   aria-labelledby="dropdownMenuButton"
                 >
                   <li>
-                    <a className="dropdown-item" href="#">
+                    <a className="dropdown-item" href="Perfil">
                       Mi perfil &raquo;
                     </a>
                     <ul className="dropdown-menu dropdown-submenu">
@@ -78,18 +79,18 @@ export const Navbar = () => {
                         </a>
                       </li>
                       <li>
-                        <a className="dropdown-item" href="#">
+                        <a className="dropdown-item" href="Private">
                           Publicaciones privadas
                         </a>
                       </li>
                     </ul>
                     <li>
-                      <a className="dropdown-item" href="#">
+                      <a className="dropdown-item" href="">
                         Publicaciones que me han gustado
                       </a>
                     </li>
                     <li>
-                      <a className="dropdown-item bg-dark text-light" href="#">
+                      <a className="dropdown-item bg-dark text-light" href="Subirpost">
                         Crear publicación
                       </a>
                     </li>
