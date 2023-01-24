@@ -9,6 +9,9 @@ import { Single } from "./pages/single";
 import { Subirpost } from "./pages/subirpost";
 import { Game } from "./pages/game";
 import { Gamemillan } from "./pages/gamemillan";
+import { Perfil } from "./pages/perfil";
+import { Forogeneral } from "./pages/forogeneral";
+
 import { Signup } from "./pages/signup";
 import { Login } from "./pages/login";
 import { Private } from "./pages/private";
@@ -38,6 +41,9 @@ const Layout = () => {
             <Route element={<Subirpost />} path="/subirpost" />
             <Route element={<Game />} path="/game/:id" />
             <Route element={<Gamemillan />} path="gamemillan" />
+            <Route element={<Perfil />} path="/perfil" />
+            <Route element={<Forogeneral />} path="/conversaciones" />
+
             <Route element={<Signup />} path="/signup" />
             <Route element={<Login />} path="/login" />
             <Route element={<Private />} path="/private" />
