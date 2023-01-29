@@ -11,6 +11,14 @@ import { Game } from "./pages/game";
 import { Gamemillan } from "./pages/gamemillan";
 import { Perfil } from "./pages/perfil";
 import { Foro } from "./pages/foro";
+import { Forodudas } from "./pages/forodudas";
+import { Forogrupos } from "./pages/forogrupos";
+import { Foronoticias } from "./pages/foronoticias";
+import { Foronovedades } from "./pages/foronovedades";
+import { Foroquedadas } from "./pages/foroquedadas";
+
+
+
 import { Signup } from "./pages/signup";
 import { Login } from "./pages/login";
 import { Private } from "./pages/private";
@@ -42,6 +50,13 @@ const Layout = () => {
             <Route element={<Gamemillan />} path="gamemillan" />
             <Route element={<Perfil />} path="/perfil" />
             <Route element={<Foro />} path="/foro" />
+            <Route element={<Forodudas />} path="/forodudas" />
+            <Route element={<Forogrupos />} path="/forogrupos" />
+            <Route element={<Foronoticias />} path="/foronoticias" />
+            <Route element={<Foronovedades />} path="/foronovedades" />
+            <Route element={<Foroquedadas />} path="/foroquedadas" />
+
+
             <Route element={<Signup />} path="/signup" />
             <Route element={<Login />} path="/login" />
             <Route element={<Private />} path="/private" />

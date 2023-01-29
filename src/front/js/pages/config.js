@@ -1,4 +1,4 @@
 const config = {
-  HOSTNAME: "https://angel2388-proyecto-sa5ixmsdydj.ws-eu83.gitpod.io/",
+  HOSTNAME: "https://3001-angel2388-proyecto-sa5ixmsdydj.ws-eu84.gitpod.io",
 };
 export default config;

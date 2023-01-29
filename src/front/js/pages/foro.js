@@ -1,25 +1,25 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Hashtags } from "../component/hashtags";
+import "../../styles/foro.css";
 
 
 export const Foro = () => {
   return (
-  <div className="text-center">
-    <div className="hashtag rounded-pill d-flex mb-3">
-        <div className="tema m-auto" href="#">Noticias</div>
+  <div className="temas text-center">
+    <div className="tema rounded-pill mt-5 mb-4">
+        <a className="m-auto" href="Foronoticias">Noticias</a>
     </div>
-    <div className="hashtag rounded-pill d-flex mb-3">
-        <div className="tema m-auto" href="#">Novedades</div>
+    <div className="tema rounded-pill mb-4">
+        <a className="m-auto" href="Foronovedades">Novedades</a>
     </div>
-    <div className="hashtag rounded-pill d-flex mb-3">
-        <div className="tema m-auto" href="#">Grupos</div>
+    <div className="tema rounded-pill mb-4">
+        <a className="m-auto" href="Forogrupos">Grupos</a>
     </div>
-    <div className="hashtag rounded-pill d-flex mb-3">
-        <div className="tema m-auto" href="#">Dudas</div>
+    <div className="tema rounded-pill mb-4">
+        <a className="m-auto" href="Forodudas">Dudas</a>
     </div>
-    <div className="hashtag rounded-pill d-flex mb-3">
-        <div className="tema m-auto" href="#">Quedadas</div>
+    <div className="tema rounded-pill mb-4">
+        <a className="m-auto" href="Foroquedadas">Quedadas</a>
     </div>
   </div>
     )

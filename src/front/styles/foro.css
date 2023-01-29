@@ -1,0 +1,9 @@
+.tema {
+    width: 200px;
+    display: block;
+    text-align: center;
+    background-color: #7d5cf1;
+    color: white;
+    padding: 10px;
+    margin: auto;
+}

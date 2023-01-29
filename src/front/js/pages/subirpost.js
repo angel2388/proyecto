@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { Context } from "../store/appContext";
 import { Texto } from "./texto";
 import { Like } from "./like";
-import "../../styles/home.css";
+import "../../styles/subirpost.css";
 
 import config from "./config";
 
@@ -65,32 +65,37 @@ export const Subirpost = () => {
   };
 
   return (
-    <div className="text-center mt-5 bg-black">
-      <div className="d-flex justify-content-center fs-1 my-2">
-        <h1 className="rounded-pill bg-danger col-6 ">Crea tu publicación</h1>
+    <div className="text-center pt-3">
+      <div className="d-flex justify-content-center my-2">
+        <h1 className="col-6 text-white">Crea tu publicación</h1>
       </div>
-      <div className="d-flex align-items-center ms-5">
-        <p className="rounded-pill bg-danger col-3 fs-1 my-2">Nombre</p>
-        <input className="h-25 ms-5"></input>
+
+      <div className="d-flex">
+      <div className="col-6">
+      <div className="publicacion d-flex align-items-center ms-5">
+        <p className="col-2 my-2">Nombre del juego</p>
+        <input className="h-25 ms-5 w-50"></input>
       </div>
+      <div className="publicacion d-flex align-items-center ms-5">
+        <p className="col-2 my-2">Sinopsis</p>
+        <input className="h-25 ms-5 w-50"></input>
+      </div>
+      </div>
+
+      <div className="col-6">
       <div className="d-flex align-items-center ms-5">
-        <p
-          className="rounded-pill bg-danger col-4 fs-1 my-2 "
-          onClick={openWindowFile}
-        >
+        <p className="subir-imagen rounded-pill col-4 p-1 my-2" onClick={openWindowFile}>
           Subir imagen
         </p>
         <img
           className="ms-5"
           src=""
           id="image"
-          style={{ width: "200px", height: "200px" }}
+          style={{ width: "100px", height: "100px" }}
         ></img>
-        <button onClick={sendImage}>Submit</button>
+        <button onClick={sendImage} className="ms-3">Subir</button>
       </div>
-      <div className="d-flex align-items-center ms-5">
-        <p className="rounded-pill bg-danger col-2 fs-1 my-2">Sinopsis</p>
-        <input className="h-25 ms-5"></input>
+      </div>
       </div>
 
       <input
@@ -101,7 +106,7 @@ export const Subirpost = () => {
       ></input>
       {/* <input hidden id="file-input" type="file"></input> */}
 
-      <div className="alert alert-info">
+      {/* <div className="alert alert-info">
         {store.message ||
           "Loading message from the backend (make sure your python backend is running)..."}
       </div>
@@ -110,7 +115,7 @@ export const Subirpost = () => {
         <a href="https://start.4geeksacademy.com/starters/react-flask">
           Read documentation
         </a>
-      </p>
+      </p> */}
       <Texto value={imageURL}></Texto>
     </div>
   );

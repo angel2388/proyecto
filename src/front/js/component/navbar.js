@@ -30,8 +30,8 @@ export const Navbar = () => {
                 </a>
               </li>
               <li className="nav-item me-3">
-                <a className="nav-link active" href="Forogeneral">
-                  Conversaciones
+                <a className="nav-link active" href="Foro">
+                  Foro
                 </a>
               </li>
               <div className="dropdown">
@@ -69,26 +69,6 @@ export const Navbar = () => {
                     </ul>
                   </li>
                   <li>
-                    <a className="dropdown-item" href="#">
-                      Mis publicaciones &raquo;
-                    </a>
-                    <ul className="dropdown-menu dropdown-submenu">
-                      <li>
-                        <a className="dropdown-item" href="#">
-                          Publicaciones públicas
-                        </a>
-                      </li>
-                      <li>
-                        <a className="dropdown-item" href="Private">
-                          Publicaciones privadas
-                        </a>
-                      </li>
-                    </ul>
-                    <li>
-                      <a className="dropdown-item" href="">
-                        Publicaciones que me han gustado
-                      </a>
-                    </li>
                     <li>
                       <a className="dropdown-item bg-dark text-light" href="Subirpost">
                         Crear publicación

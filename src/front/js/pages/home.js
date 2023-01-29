@@ -17,7 +17,7 @@ export const Home = () => {
   const [generos, setGeneros] = useState([]);
   useEffect(() => {
     const calljuegos = async () => {
-      const res = await fetch(`${config.HOSTNAME}/api/post`);
+      const res = await fetch(`${config.HOSTNAME}/api/posts`);
       const data = await res.json();
       setJuegos(data.data);
       console.log(data.data);
